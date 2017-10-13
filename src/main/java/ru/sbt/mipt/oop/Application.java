@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
-
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static ru.sbt.mipt.oop.SensorEventType.*;
 
@@ -10,17 +10,18 @@ public class Application {
 
         FileReader reader = new HomeInternetFileReader();
         SmartHome smartHome = reader.read();
+        ArrayList<EventHandler> handlers = new ArrayList<>();
+        handlers.add(new LightEventHandler());
+        handlers.add(new DoorEventHandler());
 
         // начинаем цикл обработки событий
         SensorEvent event = getNextSensorEvent();
 
         while (event != null) {
             System.out.println("Got event: " + event);
-            // надо будет перенести обход дома в другой класс
-            // перевести обработчики событий в отдельный класс
-            // F6 -- перенести методы из одного класса в другой
-            EventHandler handler = EventHandlerCreator.createHandler(event.getType());
-            handler.handle(event);
+            for (EventHandler handler: handlers) {
+                handler.handle(smartHome, event);
+            }
             event = getNextSensorEvent();
         }
     }
