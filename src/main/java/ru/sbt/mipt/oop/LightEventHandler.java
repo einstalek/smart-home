@@ -1,5 +1,10 @@
 package ru.sbt.mipt.oop;
 
+import ru.sbt.mipt.oop.Light;
+import ru.sbt.mipt.oop.Room;
+import ru.sbt.mipt.oop.SensorEvent;
+import ru.sbt.mipt.oop.SmartHome;
+
 import static ru.sbt.mipt.oop.SensorEventType.LIGHT_OFF;
 import static ru.sbt.mipt.oop.SensorEventType.LIGHT_ON;
 

@@ -1,5 +1,7 @@
 package ru.sbt.mipt.oop;
 
+import ru.sbt.mipt.oop.*;
+
 import static ru.sbt.mipt.oop.SensorEventType.DOOR_CLOSED;
 import static ru.sbt.mipt.oop.SensorEventType.DOOR_OPEN;
 
@@ -8,7 +10,6 @@ public class DoorEventHandler implements EventHandler {
     @Override
     public void handle(SmartHome home, SensorEvent event) {
         if (event.getType() == DOOR_OPEN || event.getType() == DOOR_CLOSED) {
-            // событие от двери
             for (Room room : home.getRooms()) {
                 for (Door door : room.getDoors()) {
                     if (door.getId().equals(event.getObjectId())) {
@@ -37,6 +38,6 @@ public class DoorEventHandler implements EventHandler {
     }
 
     private void sendCommand(SensorCommand command) {
-
+        System.out.println("Pretent we're sending command " + command);
     }
 }
