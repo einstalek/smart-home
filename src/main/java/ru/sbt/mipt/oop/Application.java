@@ -2,6 +2,7 @@ package ru.sbt.mipt.oop;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Application {
 
@@ -16,28 +17,17 @@ public class Application {
         smartHome.addRoom(new Room(Arrays.asList(light), Arrays.asList(door), "room"));
         smartHome.addRoom(new Room(Arrays.asList(hall_light), Arrays.asList(hall_door), "hall"));
 
-        ArrayList<EventHandler> handlers = new ArrayList<>();
-        handlers.add(new LightEventHandler());
-        handlers.add(new DoorEventHandler());
-        handlers.add(new SimpleHandlerDecorator(new SimpleScenarioHandler()));
-
-        // начинаем цикл обработки событий
-        SensorEvent event = getNextSensorEvent();
-
-        while (event != null) {
-            System.out.println("Got event: " + event);
-            for (EventHandler handler: handlers) {
-                handler.handle(smartHome, event);
-            }
-            event = getNextSensorEvent();
-        }
+        SensorEventObserver observer = new SensorEventObserver();
+        observer.addHandlers();
+        observer.observe(smartHome);
     }
 
     private static void sendCommand(SensorCommand command) {
         System.out.println("Pretend we're sending command " + command);
     }
 
-    private static SensorEvent getNextSensorEvent() {
+
+    public static SensorEvent getNextSensorEvent() {
         // pretend like we're getting the events from physical world, but here we're going to just generate some random events
         if (Math.random() < 0.05) return null; // null means end of event stream
         SensorEventType sensorEventType = SensorEventType.values()[(int) (4 * Math.random())];
