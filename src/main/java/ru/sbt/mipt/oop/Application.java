@@ -1,18 +1,25 @@
 package ru.sbt.mipt.oop;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import static ru.sbt.mipt.oop.SensorEventType.*;
+import java.util.Arrays;
 
 public class Application {
 
     public static void main(String... args) throws IOException {
 
         FileReader reader = new HomeInternetFileReader();
-        SmartHome smartHome = reader.read();
+        SmartHome smartHome = new SmartHome();
+        Door door = new Door(true, "1");
+        Light light = new Light("1", true);
+        Door hall_door = new Door(true, "2");
+        Light hall_light = new Light("2", true);
+        smartHome.addRoom(new Room(Arrays.asList(light), Arrays.asList(door), "room"));
+        smartHome.addRoom(new Room(Arrays.asList(hall_light), Arrays.asList(hall_door), "hall"));
+
         ArrayList<EventHandler> handlers = new ArrayList<>();
         handlers.add(new LightEventHandler());
         handlers.add(new DoorEventHandler());
+        handlers.add(new SimpleHandlerDecorator(new SimpleScenarioHandler()));
 
         // начинаем цикл обработки событий
         SensorEvent event = getNextSensorEvent();
