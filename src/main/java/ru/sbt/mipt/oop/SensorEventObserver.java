@@ -10,13 +10,14 @@ public class SensorEventObserver {
 
     public void addHandlers() {
         handlers.add(new LightEventHandler());
-        handlers.add(new DoorEventHandler());
+        handlers.add(new SimpleHandlerDecorator(new DoorEventHandler()));
         handlers.add(new SimpleHandlerDecorator(new SimpleScenarioHandler()));
+        handlers.add(new SimpleScenarioHandler());
     }
+
 
     public void observe(SmartHome smartHome) {
         SensorEvent event = getNextSensorEvent();
-
         while (event != null) {
             System.out.println("Got event: " + event);
             for (EventHandler handler: handlers) {

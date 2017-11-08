@@ -9,6 +9,7 @@ public class Application {
     public static void main(String... args) throws IOException {
 
         FileReader reader = new HomeInternetFileReader();
+
         SmartHome smartHome = new SmartHome();
         Door door = new Door(true, "1");
         Light light = new Light("1", true);

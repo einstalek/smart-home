@@ -9,7 +9,7 @@ public class SimpleHandlerDecorator implements EventHandler{
 
     @Override
     public void handle(SmartHome home, SensorEvent event) {
-        System.out.println("Here's a decorator" + System.currentTimeMillis());
+        System.out.println("Here's a decorator " + System.currentTimeMillis() / 1000);
         handler.handle(home, event);
     }
 }
