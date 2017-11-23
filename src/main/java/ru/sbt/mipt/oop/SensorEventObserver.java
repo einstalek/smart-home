@@ -3,8 +3,6 @@ package ru.sbt.mipt.oop;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ru.sbt.mipt.oop.Application.getNextSensorEvent;
-
 public class SensorEventObserver {
     public List<EventHandler> handlers = new ArrayList<>();
 
@@ -25,5 +23,12 @@ public class SensorEventObserver {
             }
             event = getNextSensorEvent();
         }
+    }
+
+    public static SensorEvent getNextSensorEvent() {
+        if (Math.random() < 0.05) return null;
+        SensorEventType sensorEventType = SensorEventType.values()[(int) (4 * Math.random())];
+        String objectId = "" + ((int) (10 * Math.random()));
+        return new SensorEvent(sensorEventType, objectId);
     }
 }

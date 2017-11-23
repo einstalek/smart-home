@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <bean id="lightEventHandler" class="ru.sbt.mipt.oop.LightEventHandler"></bean>
+    <bean id="doorEventHandler" class="ru.sbt.mipt.oop.DoorEventHandler"></bean>
+    <bean id="readerHome" class="ru.sbt.mipt.oop.HomeInternetFileReader"></bean>
+
+    <!--<bean id="smartHome" factory-bean="readerHome" factory-method="read"></bean>-->
+
+    <bean id="smartHome" factory-bean="readerHome" factory-method="read"></bean>
+
+    <!--<bean id="fileEventType" class="com.devdaily.springtest1.bean.FileEventType">-->
+        <!--<property name="eventType" value="10"/>-->
+        <!--<property name="description" value="A sample description here"/>-->
+    <!--</bean>-->
+
+    <bean id="fileEventDao" class="com.devdaily.springtest1.dao.FileEventDao">
+        <property name="dataSource" ref="basicDataSource"/>
+    </bean>
+
+    <bean id="basicDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost/my_database" />
+        <property name="username" value="my_username" />
+        <property name="password" value="my_password" />
+        <property name="initialSize" value="3" />
+        <property name="maxActive" value="10" />
+    </bean>
+
+</beans>
