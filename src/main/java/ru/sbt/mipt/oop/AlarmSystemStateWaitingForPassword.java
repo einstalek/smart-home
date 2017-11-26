@@ -1,10 +1,10 @@
 package ru.sbt.mipt.oop;
 
-public class AlarmSystemStatePassword implements AlarmSystemState {
+public class AlarmSystemStateWaitingForPassword implements AlarmSystemState {
 
     private final AlarmSystem alarmSystem;
 
-    public AlarmSystemStatePassword(AlarmSystem alarmSystem) {
+    public AlarmSystemStateWaitingForPassword(AlarmSystem alarmSystem) {
         this.alarmSystem = alarmSystem;
     }
 

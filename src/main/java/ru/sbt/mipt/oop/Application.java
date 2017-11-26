@@ -12,12 +12,14 @@ public class Application {
 
         SmartHome smartHome = new SmartHome();
         Door door = new Door(true, "2");
-        Light light = new Light("2", true);
-        smartHome.addRoom(new Room(Arrays.asList(light), Arrays.asList(door), "room"));
+        Light light1 = new Light("0", true);
+        Light light2 = new Light("1", true);
+        smartHome.addRoom(new Room(Arrays.asList(light1, light2), Arrays.asList(door), "room"));
 
         SensorEventObserver observer = new SensorEventObserver();
         observer.addHandlers();
         observer.observe(smartHome);
+
     }
 
     private static void sendCommand(SensorCommand command) {

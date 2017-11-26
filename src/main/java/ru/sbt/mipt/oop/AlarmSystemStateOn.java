@@ -20,6 +20,6 @@ public class AlarmSystemStateOn implements AlarmSystemState {
 
     @Override
     public void onEvent(SensorEvent sensorEvent) {
-        alarmSystem.setAlarmSystemState(new AlarmSystemStatePassword(alarmSystem));
+        alarmSystem.setAlarmSystemState(new AlarmSystemStateWaitingForPassword(alarmSystem));
     }
 }
