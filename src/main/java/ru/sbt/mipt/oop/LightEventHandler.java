@@ -12,18 +12,14 @@ public class LightEventHandler implements EventHandler{
 
     @Override
     public void handle(SmartHome home, SensorEvent event) {
-        if (event.getType() == LIGHT_ON || event.getType() == LIGHT_OFF) {
-            LightIterator iterator = new LightIterator(home);
-            while (iterator.hasNext()) {
-                Light light = iterator.next();
-                if (light.getId().equals(event.getObjectId())) {
-                        if (event.getType() == LIGHT_ON) {
-                            light.setOn(true);
-                        } else {
-                            light.setOn(false);
-                        }
-                    }
-            }
+        if (event.getType() != LIGHT_ON || event.getType() != LIGHT_OFF) return;
+        LightIterator iterator = new LightIterator(home);
+        while (iterator.hasNext()) {
+            Light light = iterator.next();
+            if (light.getId().equals(event.getObjectId())) {
+                    if (event.getType() == LIGHT_ON) light.setOn(true);
+                    else light.setOn(false);
+                }
         }
     }
 }

@@ -38,9 +38,7 @@ public class LightIterator implements Iterator<Light> {
                 currentRoom++;
                 currentLight = 0;
             }
-            else {
-                throw new IllegalStateException();
-            }
+            else throw new IllegalStateException();
         }
         else {
             if (currentLight < currentRoomLights.size() - 1) {
@@ -52,9 +50,7 @@ public class LightIterator implements Iterator<Light> {
                 currentRoom++;
                 currentLight = 0;
             }
-            else {
-                throw new IllegalStateException();
-            }
+            else throw new IllegalStateException();
         }
         return light;
     }

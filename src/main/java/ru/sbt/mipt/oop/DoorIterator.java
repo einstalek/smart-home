@@ -38,9 +38,7 @@ public class DoorIterator implements Iterator<Door> {
                 currentRoom++;
                 currentDoor = 0;
             }
-            else {
-                throw new IllegalStateException();
-            }
+            else throw new IllegalStateException();
         }
         else {
             if (currentDoor < currentRoomDoors.size() - 1) {
@@ -52,9 +50,7 @@ public class DoorIterator implements Iterator<Door> {
                 currentRoom++;
                 currentDoor = 0;
             }
-            else {
-                throw new IllegalStateException();
-            }
+            else throw new IllegalStateException();
         }
         return door;
     }
