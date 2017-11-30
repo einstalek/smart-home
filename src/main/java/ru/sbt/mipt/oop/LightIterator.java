@@ -20,36 +20,42 @@ public class LightIterator implements Iterator<Light> {
 
     @Override
     public boolean hasNext() {
-        if (currentRoom < smartHome.rooms.size() - 1) return true;
-        if (currentRoom == smartHome.rooms.size() - 1) {
-            List<Light> currentRoomLights = new ArrayList<>(rooms.get(currentRoom).getLights());
-            if (currentLight < currentRoomLights.size()) return true;
+        if (currentRoom > rooms.size() - 1) return false;
+        if (currentRoom == rooms.size() - 1) {
+            Room room  = rooms.get(currentRoom);
+            if (currentLight > new ArrayList<>(room.getLights()).size() - 1) return false;
         }
-        return false;
+        return true;
     }
 
     @Override
     public Light next() {
         List<Light> currentRoomLights = new ArrayList<>(rooms.get(currentRoom).getLights());
-        Light light = currentRoomLights.get(currentLight);
-
-        if (currentRoom < rooms.size() - 1) {
-            if (currentLight < currentRoomLights.size()) {
-//                light = currentRoomLights.get(currentLight);
-                currentLight++;
-            }
-            else {
-//                light = currentRoomLights.get(currentLight);
+        Light light;
+        if (currentRoomLights.size() == 1) {
+            if (currentLight == 0) {
+                light = currentRoomLights.get(currentLight);
                 currentRoom++;
                 currentLight = 0;
             }
+            else {
+                throw new IllegalStateException();
+            }
         }
-        else if (currentRoom == rooms.size() - 1 && currentLight < currentRoomLights.size()) {
-//            light = currentRoomLights.get(currentLight);
-            currentLight++;
+        else {
+            if (currentLight < currentRoomLights.size() - 1) {
+                light = currentRoomLights.get(currentLight);
+                currentLight++;
+            }
+            else if (currentLight == currentRoomLights.size() - 1) {
+                light = currentRoomLights.get(currentLight);
+                currentRoom++;
+                currentLight = 0;
+            }
+            else {
+                throw new IllegalStateException();
+            }
         }
-        else
-            throw new IllegalStateException();
         return light;
     }
 }
