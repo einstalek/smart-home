@@ -1,35 +1,27 @@
 package ru.sbt.mipt.oop;
-import ru.sbt.mipt.oop.handlers.DoorEventHandler;
-import ru.sbt.mipt.oop.handlers.LightEventHandler;
-import ru.sbt.mipt.oop.handlers.SimpleScenarioHandler;
-import ru.sbt.mipt.oop.homeElements.Door;
-import ru.sbt.mipt.oop.homeElements.Light;
-import ru.sbt.mipt.oop.homeElements.Room;
-import ru.sbt.mipt.oop.homeElements.SmartHome;
-import ru.sbt.mipt.oop.sensors.SensorEventObserver;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ru.sbt.mipt.oop.sensors.SensorEvent;
+import ru.sbt.mipt.oop.sensors.SensorEventType;
 
 import java.io.IOException;
-import java.util.Collections;
-
-import static java.util.Arrays.asList;
 
 public class Application {
 
     public static void main(String... args) throws IOException {
 
-        SmartHome smartHome = new SmartHome();
-        Door door1 = new Door(false, "4");
-        Light light1 = new Light("0", false);
-        Light light2 = new Light("1", true);
-        Light light3 = new Light("3", true);
-        smartHome.addRoom(new Room(Collections.singletonList(light1), asList(door1, new Door(false, "3")), "bathroom"));
-        smartHome.addRoom(new Room(Collections.singletonList(light2), Collections.singletonList(new Door(true, "8")), "hall"));
-        smartHome.addRoom(new Room(Collections.singletonList(light3), Collections.singletonList(new Door(true, "7")), "kitchen"));
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Application.xml");
 
-        SensorEventObserver observer = new SensorEventObserver(asList(new LightEventHandler(), new DoorEventHandler(), new SimpleScenarioHandler()));
-        observer.observe(smartHome);
+//        SmartHome smartHome = new HomeJsonFileReader().read();
 
-        new SaverXml().save(smartHome);
 
+//        new SaverXml().save(smartHome);
+    }
+
+    public static SensorEvent getNextSensorEvent() {
+        if (Math.random() < 0.05) return null;
+        SensorEventType sensorEventType = SensorEventType.values()[(int) (4 * Math.random())];
+        String objectId = "" + ((int) (10 * Math.random()));
+        return new SensorEvent(sensorEventType, objectId);
     }
 }

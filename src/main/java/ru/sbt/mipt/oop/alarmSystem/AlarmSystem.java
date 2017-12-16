@@ -24,15 +24,15 @@ public class AlarmSystem {
         alarmSystemState.onEvent(sensorEvent);
     }
 
+    public void enterPassword(String password) {
+        alarmSystemState.enterPassword(password);
+    }
+
     public void setAlarmSystemState(AlarmSystemState alarmSystemState) {
         this.alarmSystemState = alarmSystemState;
     }
 
     public AlarmSystemStateEnum getSystemStateEnum() {
         return alarmSystemState.getState();
-    }
-
-    public void enterPassword(String password) {
-        alarmSystemState.enterPassword(password);
     }
 }
