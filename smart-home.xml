@@ -1,19 +1,19 @@
 <home> 
 	 <room>kitchen</room>
-		 <light>1_on</light>
+		 <light>1_off</light>
 		 <light>2_on</light>
-		 <door>1_opened</door>
+		 <door>1_closed</door>
 	 <room>bathroom</room>
-		 <light>3_on</light>
+		 <light>3_off</light>
 		 <door>2_opened</door>
 	 <room>bedroom</room>
-		 <light>4_on</light>
+		 <light>4_off</light>
 		 <light>5_off</light>
-		 <light>6_off</light>
+		 <light>6_on</light>
 		 <door>3_opened</door>
 	 <room>hall</room>
-		 <light>7_off</light>
+		 <light>7_on</light>
 		 <light>8_off</light>
 		 <light>9_on</light>
-		 <door>4_opened</door>
+		 <door>4_closed</door>
 </home>

@@ -2,9 +2,6 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-
-
-
     <bean id="lightEventHandler" class="ru.sbt.mipt.oop.handlers.LightEventHandler">
     </bean>
     <bean id="doorEventHandler" class="ru.sbt.mipt.oop.handlers.DoorEventHandler">
@@ -18,9 +15,4 @@
         </constructor-arg>
     </bean>
     <bean id="smartHome" class="ru.sbt.mipt.oop.readers.HomeJsonFileReader" factory-method="read"/>
-    <bean id="event" class="ru.sbt.mipt.oop.Application" factory-method="getNextSensorEvent">
-    </bean>
-
-
-
 </beans>
