@@ -5,5 +5,7 @@ import ru.sbt.mipt.oop.homeElements.SmartHome;
 import java.io.IOException;
 
 public interface FileReader {
-    public SmartHome read() throws IOException;
+    static SmartHome read() throws IOException {
+        return null;
+    }
 }
